@@ -143,7 +143,7 @@ class TranscribeStreamingSerializer:
 
         headers.update(
             self._serialize_str_header(
-                "preferred_language",
+                "preferred-language",
                 request_shape.preferred_language,
             )
         )
