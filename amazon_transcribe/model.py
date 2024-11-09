@@ -148,6 +148,9 @@ class Result:
         the speech from each audio channel separately. You can use ChannelId
         to retrieve the transcription results for a single channel in your
         audio stream.
+
+    :param language_code:
+        language_code of the audio stream.
     """
 
     def __init__(
@@ -158,6 +161,7 @@ class Result:
         is_partial: Optional[bool] = None,
         alternatives: Optional[List[Alternative]] = None,
         channel_id: Optional[str] = None,
+        language_code: Optional[str] = None,
     ):
         self.result_id = result_id
         self.start_time = start_time
@@ -165,6 +169,7 @@ class Result:
         self.is_partial = is_partial
         self.alternatives = alternatives
         self.channel_id = channel_id
+        self.language_code = language_code
 
 
 class StartStreamTranscriptionRequest:
