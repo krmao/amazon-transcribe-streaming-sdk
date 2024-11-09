@@ -48,11 +48,11 @@ class TranscribeStreamingClient:
     """
 
     def __init__(
-        self,
-        *,
-        region: str,
-        endpoint_resolver: Optional[BaseEndpointResolver] = None,
-        credential_resolver: Optional[CredentialResolver] = None,
+            self,
+            *,
+            region: str,
+            endpoint_resolver: Optional[BaseEndpointResolver] = None,
+            credential_resolver: Optional[CredentialResolver] = None,
     ):
         if endpoint_resolver is None:
             endpoint_resolver = _TranscribeRegionEndpointResolver()
@@ -69,25 +69,26 @@ class TranscribeStreamingClient:
         self._session_manager = AwsCrtHttpSessionManager(self._eventloop)
 
     async def start_stream_transcription(
-        self,
-        *,
-        language_code: str,
-        media_sample_rate_hz: int,
-        media_encoding: str,
-        vocabulary_name: Optional[str] = None,
-        session_id: Optional[str] = None,
-        vocab_filter_method: Optional[str] = None,
-        vocab_filter_name: Optional[str] = None,
-        show_speaker_label: Optional[bool] = None,
-        enable_channel_identification: Optional[bool] = None,
-        number_of_channels: Optional[int] = None,
-        enable_partial_results_stabilization: Optional[bool] = None,
-        partial_results_stability: Optional[str] = None,
-        language_model_name: Optional[str] = None,
-        identify_language: Optional[bool] = False,
-        preferred_language: Optional[str] = None,
-        identify_multiple_languages=False,
-        language_options=None,
+            self,
+            *,
+            language_code: Optional[str] = None,
+            media_sample_rate_hz: int,
+            media_encoding: str,
+            vocabulary_name: Optional[str] = None,
+            session_id: Optional[str] = None,
+            vocab_filter_method: Optional[str] = None,
+            vocab_filter_name: Optional[str] = None,
+            show_speaker_label: Optional[bool] = None,
+            enable_channel_identification: Optional[bool] = None,
+            number_of_channels: Optional[int] = None,
+            enable_partial_results_stabilization: Optional[bool] = None,
+            partial_results_stability: Optional[str] = None,
+            language_model_name: Optional[str] = None,
+            identify_language: Optional[bool] = False,
+            vocabulary_names: Optional[str] = None,
+            preferred_language: Optional[str] = None,
+            identify_multiple_languages=False,
+            language_options=None,
     ) -> StartStreamTranscriptionEventStream:
         """Coordinate transcription settings and start stream.
 
@@ -153,6 +154,12 @@ class TranscribeStreamingClient:
             if True, the language of the stream will be automatically detected. Set
             language_code to None and provide at least two language_options when
             identify_language is True.
+        :param vocabulary_names:
+            Specify the names of the custom vocabularies that you want to use when
+            processing your transcription. Note that vocabulary names are case sensitive.
+            If you use Amazon Transcribe in multiple Regions, the vocabulary must be
+            available in Amazon Transcribe in each Region. If you don’t include IdentifyLanguage
+            and want to use a custom vocabulary with your transcription, use the VocabularyName parameter instead.
         :param preferred_language:
             Adding a preferred language can speed up the language identification
             process, which is helpful for short audio clips.
@@ -181,6 +188,7 @@ class TranscribeStreamingClient:
             partial_results_stability,
             language_model_name,
             identify_language,
+            vocabulary_names,
             preferred_language,
             identify_multiple_languages,
             language_options,

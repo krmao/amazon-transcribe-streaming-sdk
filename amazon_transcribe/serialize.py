@@ -143,6 +143,13 @@ class TranscribeStreamingSerializer:
 
         headers.update(
             self._serialize_str_header(
+                "vocabulary-names",
+                request_shape.vocabulary_names,
+            )
+        )
+
+        headers.update(
+            self._serialize_str_header(
                 "preferred-language",
                 request_shape.preferred_language,
             )

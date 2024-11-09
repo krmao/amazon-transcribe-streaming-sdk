@@ -254,6 +254,7 @@ class StartStreamTranscriptionRequest:
         partial_results_stability=None,
         language_model_name=None,
         identify_language=None,
+        vocabulary_names=None,
         preferred_language=None,
         identify_multiple_languages=False,
         language_options=None,
@@ -277,6 +278,7 @@ class StartStreamTranscriptionRequest:
         self.partial_results_stability: Optional[str] = partial_results_stability
         self.language_model_name: Optional[str] = language_model_name
         self.identify_language: Optional[bool] = identify_language
+        self.vocabulary_names: Optional[str] = vocabulary_names
         self.preferred_language: Optional[str] = preferred_language
         self.identify_multiple_languages: Optional[bool] = identify_multiple_languages
         self.language_options: Optional[List[str]] = language_options or []
